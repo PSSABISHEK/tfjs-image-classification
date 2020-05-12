@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/alphaml-iosdebug/static/js/main.89052f4f.chunk.js",
+    "main.js.map": "/alphaml-iosdebug/static/js/main.89052f4f.chunk.js.map",
+    "runtime-main.js": "/alphaml-iosdebug/static/js/runtime-main.6ba6c360.js",
+    "runtime-main.js.map": "/alphaml-iosdebug/static/js/runtime-main.6ba6c360.js.map",
+    "static/js/2.d1210266.chunk.js": "/alphaml-iosdebug/static/js/2.d1210266.chunk.js",
+    "static/js/2.d1210266.chunk.js.map": "/alphaml-iosdebug/static/js/2.d1210266.chunk.js.map",
+    "index.html": "/alphaml-iosdebug/index.html",
+    "precache-manifest.9e48cc3bb38bdd5dc382ff6167688e01.js": "/alphaml-iosdebug/precache-manifest.9e48cc3bb38bdd5dc382ff6167688e01.js",
+    "service-worker.js": "/alphaml-iosdebug/service-worker.js"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ba6c360.js",
+    "static/js/2.d1210266.chunk.js",
+    "static/js/main.89052f4f.chunk.js"
+  ]
+}
