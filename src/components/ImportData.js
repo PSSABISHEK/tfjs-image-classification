@@ -23,7 +23,7 @@ class ImportData extends Component {
 
   render() {
     if (this.props.convertSignal)
-      this.props.sendDataToTrain(this.trainingCanvasArr, this.state.className);
+      this.props.sendDataToTrain(this.trainingCanvasArr);
 
     this.previewList = document.getElementById("picArray" + this.props.pKeyId);
     return (

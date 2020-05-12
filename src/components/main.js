@@ -4,10 +4,9 @@ import { Grid, Col, Row, Button } from "react-bootstrap";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import { connect } from "react-redux";
+import imageNetData from "../image_net/imagenet_class_index.json";
 
-import image_model from "../tfjs-model/script";
-
-let trainingSession = null;
+import { infer_model } from "../tfjs-model/script";
 
 class Main extends Component {
   classArray = [];
@@ -17,6 +16,7 @@ class Main extends Component {
   epochs = 25; //CHANGE EPOCHS VALUE HERE
   batchSize = 16; //CHANGE BATCHSIZE VALUE HERE
   learningRate = 0.001;
+  className = null;
 
   constructor(props) {
     super(props);
@@ -49,38 +49,14 @@ class Main extends Component {
     this.props.globalTrainingStatus(true);
   };
 
-  async startLearning(data, className) {
-    if (this.classArray.length > 1) {
-      if (data.length > 0) {
-        if (this.classNArr.indexOf(className) < 0) {
-          this.classNArr.push(className);
-        }
-        this.samplesJSON[className] = data;
-      }
-      if (this.classNArr.length === this.classArray.length) {
-        this.props.globalTrainingStatus(false);
-        console.log("TRAINING STARTED");
-
-        if (trainingSession) {
-          trainingSession.dispose_all();
-          trainingSession = null;
-        }
-        trainingSession = new image_model();
-        await trainingSession.train_model(
-          this.samplesJSON,
-          this.classNArr,
-          this.epochs,
-          this.batchSize,
-          this.learningRate
-        );
-        console.log("MODEL TRAINED");
-        this.samplesJSON = new Object();
-        this.classNArr = [];
-        this.classRecdToTrain = 0;
-      }
-    } else {
-      alert("Atleast 2 class must exist to train");
-    }
+  async startLearning(data) {
+    let classIndex = await infer_model(data[0]);
+    this.className = (
+      <div>
+        <h1>{imageNetData[classIndex]}</h1>
+      </div>
+    );
+    this.setState({})
   }
 
   render() {
@@ -89,18 +65,16 @@ class Main extends Component {
         <Col xs={4} md={4} lg={4}>
           {this.classArray.map((classArray) => classArray)}
           <Row>
-            <Fab size="small" color="secondary" aria-label="add">
-              <AddIcon onClick={this.handleAddClass} />
-            </Fab>
-          </Row>
-          <Row>
             <Col>
               <center>
-                <Button onClick={this.enableLearning}>Start Learning</Button>
+                <Button onClick={this.enableLearning}>Predict</Button>
               </center>
             </Col>
           </Row>
         </Col>
+        <Row>
+          {this.className}
+        </Row>
       </Grid>
     );
   }
