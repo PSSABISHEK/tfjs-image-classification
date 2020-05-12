@@ -4,7 +4,7 @@ tf.enableProdMode();
 
 console.log("yeeterson");
 
-const INDEXED_DB_URL = "indexeddb://modebile";
+//const INDEXED_DB_URL = "indexeddb://modebile";
 
 const img_to_tensor = (img) => {
   return tf.tidy(() => {
